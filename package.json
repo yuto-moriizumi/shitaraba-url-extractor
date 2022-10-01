@@ -1,0 +1,14 @@
+{
+  "name": "kks-url-extractor",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "YsikiShokurin <Ysiki.Shokurin@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.1",
+    "typescript": "^4.8.4"
+  }
+}
