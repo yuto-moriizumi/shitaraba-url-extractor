@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         kks-url-extractor
+// @name         kk-url-extractor
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
@@ -14,6 +14,8 @@ const EXLUDE_URL_PARTS = [
   "mercury.bbspink.com",
   "pixiv.net",
   "gumroad.com",
+  "fanbox.cc",
+  "patreon.com",
   ".wav",
   ".jpg",
   ".mp4",
@@ -21,23 +23,21 @@ const EXLUDE_URL_PARTS = [
 ];
 
 (() => {
-  setTimeout(() => {
+  const posts = document.querySelectorAll(".post");
+  posts.forEach((post, i) => {
     try {
-      const posts = document.querySelectorAll(".post");
-      posts.forEach((post, i) => {
-        const text = (post as HTMLDivElement).innerText;
-        const res = text.match(
-          /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+/g
-        );
-        if (res === null) return;
-        if (
-          res.some((url) => EXLUDE_URL_PARTS.some((part) => url.includes(part)))
-        )
-          return;
-        post.setAttribute("style", "background-color:red");
-      });
+      const text = (post as HTMLDivElement).innerText;
+      const res = text.match(
+        /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+/g
+      );
+      if (res === null) return;
+      if (
+        res.every((url) => EXLUDE_URL_PARTS.some((part) => url.includes(part)))
+      )
+        return;
+      post.setAttribute("style", "background-color:red");
     } catch (error) {
       console.debug(error);
     }
-  }, 1000);
+  });
 })();
