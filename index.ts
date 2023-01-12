@@ -4,7 +4,7 @@
 // @version      0.1
 // @description  try to take over the world!
 // @author       You
-// @match        https://mercury.bbspink.com/*
+// @match        https://jbbs.shitaraba.net/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=mozilla.org
 // @grant        none
 // ==/UserScript==
@@ -19,11 +19,10 @@ const EXLUDE_URL_PARTS = [
   ".wav",
   ".jpg",
   ".mp4",
-  ".png",
 ];
 
 (() => {
-  const posts = document.querySelectorAll(".post");
+  const posts = document.querySelectorAll("dd");
   posts.forEach((post, i) => {
     try {
       const text = (post as HTMLDivElement).innerText;
